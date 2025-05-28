@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEST — Game Developers</title>
+    <style>
+        body {
+        background-color: #0a0a0a;
+        background-image: 
+            radial-gradient(circle at 70% 20%, rgba(40, 40, 40, 0.15) 0%, transparent 30%),
+            radial-gradient(circle at 30% 80%, rgba(60, 60, 60, 0.1) 0%, transparent 40%),
+            linear-gradient(170deg, rgba(20, 20, 20, 0.4) 0%, rgba(0, 0, 0, 0) 40%);
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        background-blend-mode: soft-light;
+        color: #ffffff;
+        line-height: 1.6;
+        min-height: 100vh;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            padding: 1rem 2rem;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 300;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            color: #888;
+        }
+
+        .red-dot {
+            color: #ff0000;
+        }
+
+
+        .cta-button {
+            background: #fff;
+            color: #0a0a0a;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 8rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .game-card {
+            background: #1a1a1a;
+            border-radius: 1rem;
+            padding: 2rem;
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 1px solid #222;
+            margin-top: 5rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="container">
+             <h1>
+                <span>NEST</span>
+                <span class="red-dot">•</span>
+                <!-- <span class="hero-subtitle">Game Developers.</span> -->
+            </h1>
+        </div>
+    </section>
+
+    <!-- <section id="about">
+        <div class="container">
+            <h2>Who we are</h2>
+            <p>We are a game developers, artists with creative vision.</p>
+        </div>
+    </section>
+
+    <section id="games">
+        <div class="container">
+            <h2>Our creations</h2>
+            <div class="games-grid">
+                <div class="game-card">
+                    <h3>Sudoku: solve, enjoy!</h3>
+                    <p>Sudoku: Train the brain with a classic puzzle!</p>
+                </div>
+                <div class="game-card">
+                    <h3>???????</h3>
+                    <p>.....................</p>
+                </div>
+                <div class="game-card">
+                    <h3>???????</h3>
+                    <p>.....................</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2>Contact with us</h2>
+            <p>Support:<br>
+            <a href="mailto:alnestsrt@gmail.com" style="color: #fff; text-decoration: underline;">alnestsrt@gmail.com</a></p>
+        </div>
+    </section> -->
+
+    <footer>
+        <div class="container">
+            <p>© 2025 NEST•. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+
+        document.querySelectorAll('section').forEach((section) => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
