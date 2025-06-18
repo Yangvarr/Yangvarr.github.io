@@ -69,7 +69,6 @@
         .card:hover {
             transform: translateY(-8px);
             box-shadow: var(--box-shadow);
-            border-color: var(--accent);
         }
         
         .card-image {
@@ -340,11 +339,6 @@
             backdrop-filter: blur(5px);
         }
         
-        .step-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--box-shadow);
-            border-color: var(--accent);
-        }
         
         .step-card::after {
             content: '';
@@ -402,26 +396,6 @@
             max-width: 600px;
             margin: 3rem auto 0;
             flex-wrap: wrap;
-        }
-        
-        .token {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .token-name {
-            font-weight: 600;
-            font-size: 1.1rem;
-            padding: 0.5rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-        
-        .token-name:hover {
-            color: #000;
         }
         
         /* ===== Contact Section ===== */
@@ -577,7 +551,7 @@
             }
             
             .games-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 3fr;
                 max-width: 500px;
                 margin: 0 auto;
             }
@@ -649,25 +623,20 @@
         <div class="container">
             <div class="section-title centered-content">
                 <h2>Play & <span class="red-dot">Earn</span></h2>
-                <p>Rewards system for dedicated players</p>
+                <p>Play your favorite games, earn points, and easily redeem them for cryptocurrency</p>
             </div>
             
             <div class="content-block">
                 <div class="rewards-content">
-                    <div class="rewards-header">
-                        <h2>Play your favorite games, earn points, and easily redeem them for cryptocurrency</h2>
-                        <p>Earning rewards has never been easier. Simply play your favorite games, accumulate NEST rewards, and choose cryptocurrency.</p>
-                    </div>
-                    
                     <div class="rewards-steps">
                         <div class="step-card">
                             <h3 class="step-title">Earn Rewards</h3>
-                            <p>Play games and earn NEST points through achievements and milestones.</p>
+                            <p>Play games and earn NEST points.</p>
                         </div>
                         
                         <div class="step-card">
                             <h3 class="step-title">Convert</h3>
-                            <p>Accumulate points and convert them to rewards in your dashboard.</p>
+                            <p>Accumulate points and convert them to rewards.</p>
                         </div>
                         
                         <div class="step-card">
@@ -732,25 +701,23 @@
         </div>
     </section>
     
-    
-    
-    <div class="container">
+    <!-- <div class="container">
         <div class="ad-container centered-content">
             <span class="ad-label">Advertisement</span>
             <div id="container-be0d53ec84a3e3d5f6568b0e0a96544b"></div>
         </div>
-    </div>
+    </div> -->
     
     <section id="contact">
         <div class="container">
             <div class="section-title centered-content">
                 <h2>Contact <span class="red-dot">Us</span></h2>
-                <p>We'd love to hear from you</p>
+                <p>Have questions, feedback, or partnership opportunities? Reach out to our team and we'll get back to you as soon as possible.</p>
             </div>
             
             <div class="content-block">
                 <div class="contact-content">
-                    <p>Have questions, feedback, or partnership opportunities? Reach out to our team and we'll get back to you as soon as possible.</p>
+                    <!-- <p>Have questions, feedback, or partnership opportunities? Reach out to our team and we'll get back to you as soon as possible.</p> -->
                     <a href="mailto:alnestsrt@gmail.com" class="contact-email">
                         <i class="fas fa-envelope"></i> alnestsrt@gmail.com
                     </a>
@@ -763,7 +730,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="social-links">
-                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="X"><i class="fab fa-x"></i></a>
                     <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
