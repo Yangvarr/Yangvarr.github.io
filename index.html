@@ -20,6 +20,9 @@
             --accent: #ff0000;
             --text: #ffffff;
             --text-secondary: #aaaaaa;
+            --crypto-blue: #2775ca;
+            --crypto-purple: #9945ff;
+            --rewards-bg: rgba(20, 20, 30, 0.7);
         }
 
         body {
@@ -296,6 +299,177 @@
             font-style: italic;
         }
 
+        /* Rewards Section */
+        #rewards {
+            background: var(--rewards-bg);
+            position: relative;
+            overflow: hidden;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #rewards::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 80% 30%, rgba(39, 117, 202, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 20% 70%, rgba(153, 69, 255, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        .rewards-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .rewards-header {
+            margin-bottom: 3rem;
+        }
+
+        .rewards-header h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: 1.5rem;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+        }
+
+        .rewards-header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .rewards-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            background: rgba(30, 30, 40, 0.8);
+            border-radius: 1rem;
+            padding: 2.5rem 2rem;
+            flex: 1;
+            min-width: 280px;
+            max-width: 320px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .step-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--crypto-blue), var(--crypto-purple));
+            opacity: 0.8;
+            transition: height 0.3s ease;
+        }
+
+        .step-card:hover::after {
+            height: 8px;
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent);
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover .step-icon {
+            background: rgba(255, 0, 0, 0.1);
+            transform: scale(1.1);
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .crypto-tokens {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 1rem;
+            max-width: 600px;
+            margin: 3rem auto 0;
+        }
+
+        .token {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .token-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+        }
+
+        .bnb .token-icon {
+            background: rgba(240, 185, 11, 0.1);
+            color: #f0b90b;
+        }
+
+        .sol .token-icon {
+            background: rgba(0, 250, 160, 0.1);
+            color: #00faa0;
+        }
+
+        .token-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
         /* Contact Section */
         .contact-content {
             max-width: 600px;
@@ -448,6 +622,15 @@
                 max-width: 500px;
                 margin: 0 auto;
             }
+
+            .rewards-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .step-card {
+                min-width: 100%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -484,6 +667,7 @@
                 <ul id="navMenu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#games">Games</a></li>
+                    <li><a href="#rewards">Rewards</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -493,8 +677,9 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content centered-content">
-                <h1>Creating Immersive <span class="red-dot">Gaming Experiences</span></h1>
-                <p>NEST is a passionate game development studio crafting unique and engaging games for players worldwide.</p>
+                <h1>Creating Immersive <span class="red-dot">Gaming Experiences</span>
+                <span>NEST<span class="red-dot">•</span></h1>
+                <p>Is a passionate game development studio crafting unique and engaging games for players worldwide.</p>
                 <a href="#games" class="cta-button">Explore Our Games</a>
             </div>
         </div>
@@ -544,6 +729,44 @@
                         <a href="#" class="game-link">
                             Coming Soon <i class="fas fa-hourglass-half"></i>
                         </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rewards">
+        <div class="container">
+            <div class="rewards-content centered-content">
+                <div class="rewards-header">
+                    <h2>Play your favorite games, earn points, and easily redeem them for cryptocurrency</h2>
+                    <p class="how-it-works">HOW IT WORKS</p>
+                    <p>Earning rewards has never been easier. Simply play your favorite games, accumulate NEST rewards, and choose cryptocurrency. Here's how it works:</p>
+                </div>
+                
+                <div class="rewards-steps">
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Earn NEST Rewards</h3>
+                        <p>Play games and earn NEST points for your achievements, time played, and milestones reached.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <h3>Convert</h3>
+                        <p>Accumulate points and convert them to rewards in our secure ecosystem with competitive rates.</p>
+                    </div>
+                    
+                    <div class="step-card">
+                        <div class="step-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <h3>Redeem points for BNB or SOL</h3>
+                        <p>Exchange your NEST points for popular cryptocurrencies like BNB or SOL with low fees.</p>
                     </div>
                 </div>
             </div>
@@ -639,7 +862,7 @@
             });
         });
         
-        document.querySelectorAll('section, .game-card, .ad-container').forEach((element) => {
+        document.querySelectorAll('section, .game-card, .ad-container, .step-card').forEach((element) => {
             element.style.opacity = 0;
             element.style.transform = 'translateY(30px)';
             element.style.transition = 'all 0.6s ease-out';
@@ -655,6 +878,12 @@
             hero.style.opacity = 1;
             hero.style.transform = 'scale(1)';
         }, 300);
+        
+        // Reward steps animation
+        const stepCards = document.querySelectorAll('.step-card');
+        stepCards.forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+        });
     </script>
 </body>
 </html>
