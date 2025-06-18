@@ -3,28 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEST — Game Developers</title>
+    <title>NEST • Game Developers</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>•</text></svg>">
-    
-    <!-- Yandex.RTB -->
-    <script>window.yaContextCb=window.yaContextCb||[]</script>
-    <script src="https://yandex.ru/ads/system/context.js" async></script>
-    
-    <!-- First ad script -->
-    <script type="text/javascript">
-        atOptions = {
-            'key' : 'd1c2730dab769ad021cb7fb789918447',
-            'format' : 'iframe',
-            'height' : 50,
-            'width' : 320,
-            'params' : {}
-        };
-    </script>
-    <script type="text/javascript" src="//www.highperformanceformat.com/d1c2730dab769ad021cb7fb789918447/invoke.js"></script>
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #ff0000;
+            --text: #ffffff;
+            --text-secondary: #aaaaaa;
+        }
+
         body {
-            background-color: #0a0a0a;
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             background-image: 
                 radial-gradient(circle at 70% 20%, rgba(40, 40, 40, 0.15) 0%, transparent 30%),
                 radial-gradient(circle at 30% 80%, rgba(60, 60, 60, 0.1) 0%, transparent 40%),
@@ -32,74 +36,44 @@
             background-size: 100% 100%;
             background-attachment: fixed;
             background-blend-mode: soft-light;
-            color: #ffffff;
-            line-height: 1.6;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
         }
 
         .container {
+            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 0 1.5rem;
         }
 
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
+        /* Header & Navigation */
+        header {
             background: rgba(10, 10, 10, 0.95);
-            padding: 1rem 2rem;
             backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
             z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .header-container {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        nav ul {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 300;
-            transition: opacity 0.3s;
-            padding: 0.5rem 1rem;
-        }
-
-        nav a:hover {
-            opacity: 0.7;
-        }
-
-        .hero {
-            height: 100vh;
+        .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            letter-spacing: -0.03em;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            color: #888;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text);
         }
 
         .red-dot {
-            color: #ff0000;
+            color: var(--accent);
             animation: pulse 2s infinite;
         }
 
@@ -109,88 +83,162 @@
             100% { opacity: 1; }
         }
 
-        .cta-button {
-            background: #fff;
-            color: #0a0a0a;
-            padding: 1rem 2rem;
-            border-radius: 50px;
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text);
             text-decoration: none;
             font-weight: 500;
-            transition: transform 0.3s, background 0.3s;
+            transition: color 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            color: var(--text-secondary);
+        }
+
+        .cta-button {
             display: inline-block;
+            background: var(--text);
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid var(--text);
+            font-size: 1rem;
         }
 
         .cta-button:hover {
+            background: transparent;
+            color: var(--text);
             transform: translateY(-3px);
-            background: #e0e0e0;
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.2);
         }
 
+        /* Games Section */
         section {
-            padding: 8rem 0;
-            position: relative;
+            padding: 6rem 0;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .section-title h2 {
+            font-size: clamp(1.75rem, 5vw, 2.5rem);
+            margin-bottom: 1rem;
             position: relative;
             display: inline-block;
         }
 
-        h2:after {
+        .section-title h2::after {
             content: '';
             position: absolute;
             bottom: -10px;
-            left: 0;
+            left: 50%;
+            transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background: #ff0000;
+            background: var(--accent);
         }
 
         .games-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .game-card {
-            background: #1a1a1a;
+            background: var(--secondary);
             border-radius: 1rem;
-            padding: 2rem;
-            transition: transform 0.3s;
-            display: block;
-            text-decoration: none;
-            color: inherit;
-            border: 1px solid #2a2a2a;
             overflow: hidden;
-            position: relative;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
-            border-color: #ff4444;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.15);
+            border-color: rgba(255, 0, 0, 0.2);
         }
 
         .game-image {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            height: 200px;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            position: relative;
         }
 
         .game-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s;
+            transition: transform 0.5s ease;
         }
 
         .game-card:hover .game-image img {
@@ -198,108 +246,242 @@
         }
 
         .game-content {
-            padding: 0 0.5rem;
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         .game-content h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
         }
 
         .game-content p {
-            color: #aaa;
-            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .game-link {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s;
+        }
+
+        .game-link:hover {
+            gap: 0.7rem;
         }
 
         .coming-soon {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #777;
-            font-size: 1.2rem;
             height: 100%;
+            color: var(--text-secondary);
+            font-style: italic;
         }
 
-        .ad-container {
-            background: #1a1a1a;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 3rem auto;
-            max-width: 800px;
+        /* Contact Section */
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
             text-align: center;
-            border: 1px solid #2a2a2a;
+        }
+
+        .contact-content p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .contact-email {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-email:hover {
+            background: rgba(255, 0, 0, 0.1);
+            border-color: rgba(255, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .contact-email i {
+            margin-right: 0.5rem;
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 3rem 0 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* Ad Container */
+        .ad-container {
+            background: rgba(20, 20, 20, 0.6);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            max-width: 800px;
         }
 
         .ad-label {
             display: block;
-            color: #888;
+            color: var(--text-secondary);
             font-size: 0.8rem;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        footer {
-            text-align: center;
-            padding: 3rem 0;
-            border-top: 1px solid #222;
-            margin-top: 5rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        footer a {
-            color: #aaa;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .header-container {
+                padding: 0 1rem;
             }
-            
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+                gap: 1.5rem;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding-top: 2rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
             .games-grid {
                 grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
             }
-            
-            nav ul {
-                gap: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
             }
-            
-            section {
-                padding: 5rem 0;
+
+            .cta-button {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+            }
+
+            .contact-email {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#games">Games</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <span>NEST</span>
+                <span class="red-dot">•</span>
+            </a>
+            
+            <nav>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#games">Games</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
     <section class="hero" id="home">
         <div class="container">
-             <h1>
-                <span>NEST</span>
-                <span class="red-dot">•</span>
-            </h1>
-            <p>Creating immersive gaming experiences for passionate players</p>
-            <a href="#games" class="cta-button">Explore Our Games</a>
+            <div class="hero-content">
+                <h1>Creating Immersive <span class="red-dot">Gaming Experiences</span></h1>
+                <p>NEST is a passionate game development studio crafting unique and engaging games for players worldwide.</p>
+                <a href="#games" class="cta-button">Explore Our Games</a>
+            </div>
         </div>
     </section>
 
-    <!-- Second ad placement -->
-    <div class="container ad-container">
-        <span class="ad-label">Advertisement</span>
-        <div id="ad-banner-top">
+    <div class="container">
+        <div class="ad-container">
+            <span class="ad-label">Advertisement</span>
             <script type="text/javascript">
                 atOptions = {
                     'key' : 'd1c2730dab769ad021cb7fb789918447',
@@ -315,51 +497,57 @@
 
     <section id="games">
         <div class="container">
-            <h2>Our Creations</h2>
+            <div class="section-title">
+                <h2>Our <span class="red-dot">Creations</span></h2>
+                <p>Discover the games we've crafted with passion and precision</p>
+            </div>
+            
             <div class="games-grid">
-                <a href="https://www.rustore.ru/catalog/app/com.NEST.SUDOKU" class="game-card" target="_blank">
+                <div class="game-card">
                     <div class="game-image">
-                        <div style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">
-                            SUDOKU
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1635863138275-d9b33299680a?q=80&w=600" alt="Sudoku Game">
                     </div>
                     <div class="game-content">
                         <h3>Sudoku: Solve & Enjoy!</h3>
-                        <p>Train your brain with classic number puzzles and challenging levels</p>
-                    </div>
-                </a>
-                
-                <div class="game-card">
-                    <div class="game-image">
-                        <div style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">
-                            MYSTERY
-                        </div>
-                    </div>
-                    <div class="game-content">
-                        <h3>Mystery Project</h3>
-                        <p>An immersive adventure coming soon to your devices</p>
+                        <p>Challenge your mind with this classic puzzle game featuring thousands of unique puzzles across multiple difficulty levels.</p>
+                        <a href="https://www.rustore.ru/catalog/app/com.NEST.SUDOKU" class="game-link" target="_blank">
+                            Play Now <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 
                 <div class="game-card">
                     <div class="game-image">
-                        <div style="background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%); width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.5rem;">
-                            UNRELEASED
-                        </div>
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600" alt="Mystery Game">
                     </div>
                     <div class="game-content">
-                        <h3>Top Secret</h3>
-                        <p>Something amazing is brewing in our development labs</p>
+                        <h3>Mystery: Hidden Objects</h3>
+                        <p>Embark on an adventure to find hidden objects in beautifully crafted scenes with an intriguing storyline.</p>
+                        <a href="#" class="game-link">
+                            Coming Soon <i class="fas fa-hourglass-half"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="game-card">
+                    <div class="game-image">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600" alt="Secret Project">
+                    </div>
+                    <div class="game-content">
+                        <h3>Project: Red Horizon</h3>
+                        <p>Our most ambitious project yet - an immersive RPG experience set in a dystopian future. Currently in development.</p>
+                        <a href="#" class="game-link">
+                            Coming Soon <i class="fas fa-hourglass-half"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Third ad placement -->
-    <div class="container ad-container">
-        <span class="ad-label">Advertisement</span>
-        <div id="ad-banner-middle">
+    <div class="container">
+        <div class="ad-container">
+            <span class="ad-label">Advertisement</span>
             <script type="text/javascript">
                 atOptions = {
                     'key' : 'd1c2730dab769ad021cb7fb789918447',
@@ -375,48 +563,73 @@
 
     <section id="contact">
         <div class="container">
-            <h2>Contact Us</h2>
-            <p style="margin-bottom: 2rem;">Have questions or feedback? We'd love to hear from you!</p>
-            <div style="background: #1a1a1a; padding: 2rem; border-radius: 10px; max-width: 600px; margin: 0 auto;">
-                <p style="margin-bottom: 1rem;"><strong>Support:</strong></p>
-                <p style="margin-bottom: 2rem;">
-                    <a href="mailto:alnestsrt@gmail.com" style="color: #4dabf7; text-decoration: none;">alnestsrt@gmail.com</a>
-                </p>
-                <p style="color: #888; font-size: 0.9rem;">We typically respond within 24-48 hours</p>
+            <div class="section-title">
+                <h2>Contact <span class="red-dot">Us</span></h2>
+                <p>We'd love to hear from you</p>
+            </div>
+            
+            <div class="contact-content">
+                <p>Have questions, feedback, or partnership opportunities? Reach out to our team and we'll get back to you as soon as possible.</p>
+                <a href="mailto:alnestsrt@gmail.com" class="contact-email">
+                    <i class="fas fa-envelope"></i> alnestsrt@gmail.com
+                </a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>© 2025 NEST•. All rights reserved.</p>
-            <p style="margin-top: 1rem; font-size: 0.8rem;">Creating unforgettable gaming experiences</p>
+            <div class="social-links">
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 NEST • Game Development Studio. All rights reserved.</p>
+                <p>Crafting unforgettable gaming experiences since 2023</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Yandex.RTB R-A-15708803-1 -->
     <script>
-    window.yaContextCb.push(() => {
-        Ya.Context.AdvManager.render({
-            "blockId": "R-A-15708803-1",
-            "type": "floorAd",
-            "platform": "desktop"
-        })
-    })
-    </script>
-
-    <script>
-        // Smooth scroll for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.querySelector('i').classList.add('fa-bars');
+                mobileMenuBtn.querySelector('i').classList.remove('fa-times');
             });
         });
-
-        // Scroll animation
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animation on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -425,16 +638,16 @@
                 }
             });
         });
-
-        document.querySelectorAll('section').forEach((section) => {
-            section.style.opacity = 0;
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'all 0.6s ease-out';
-            observer.observe(section);
+        
+        document.querySelectorAll('section, .game-card, .ad-container').forEach((element) => {
+            element.style.opacity = 0;
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease-out';
+            observer.observe(element);
         });
         
-        // Animation for hero section
-        const hero = document.querySelector('.hero');
+        // Hero animation
+        const hero = document.querySelector('.hero-content');
         hero.style.opacity = 0;
         hero.style.transform = 'scale(0.95)';
         setTimeout(() => {
