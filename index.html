@@ -7,22 +7,25 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>•</text></svg>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* ===== Unified Design Variables ===== */
+        :root {
+            --primary: #000000; /* Pure black */
+            --secondary: rgba(20, 20, 20, 0.7); /* Semi-transparent dark */
+            --accent: #ff0000; /* Red accent */
+            --text: #ffffff;
+            --text-secondary: #aaaaaa;
+            --transition: all 0.3s ease;
+            --border-radius: 0.8rem;
+            --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        :root {
-            --primary: #0a0a0a;
-            --secondary: #1a1a1a;
-            --accent: #ff0000;
-            --text: #ffffff;
-            --text-secondary: #aaaaaa;
-            --rewards-bg: #0a0a0a;
-        }
-
+        
         body {
             background-color: var(--primary);
             color: var(--text);
@@ -32,20 +35,17 @@
             flex-direction: column;
             background-image: 
                 radial-gradient(circle at 70% 20%, rgba(40, 40, 40, 0.15) 0%, transparent 30%),
-                radial-gradient(circle at 30% 80%, rgba(60, 60, 60, 0.1) 0%, transparent 40%),
-                linear-gradient(170deg, rgba(20, 20, 20, 0.4) 0%, rgba(0, 0, 0, 0) 40%);
-            background-size: 100% 100%;
+                radial-gradient(circle at 30% 80%, rgba(60, 60, 60, 0.1) 0%, transparent 40%);
             background-attachment: fixed;
-            background-blend-mode: soft-light;
         }
-
+        
         .container {
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
-
+        
         .centered-content {
             display: flex;
             flex-direction: column;
@@ -53,10 +53,108 @@
             align-items: center;
             text-align: center;
         }
-
-        /* Header & Navigation */
+        
+        /* ===== Card Styles ===== */
+        .card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            max-width: 320px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow);
+            border-color: var(--accent);
+        }
+        
+        .card-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .card:hover .card-image img {
+            transform: scale(1.2);
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* ===== Button Styles ===== */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            text-align: center;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--text);
+            color: var(--primary);
+            border: 2px solid var(--text);
+        }
+        
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--text);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(230, 0, 0, 0.76);
+        }
+        
+        .btn-accent {
+            background: var(--accent);
+            color: var(--text);
+            border: 2px solid var(--accent);
+        }
+        
+        .btn-accent:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+        
+        .btn-link:hover {
+            gap: 0.7rem;
+        }
+        
+        /* ===== Header & Navigation ===== */
         header {
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             position: fixed;
             width: 100%;
@@ -64,13 +162,13 @@
             padding: 1rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
+        
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .logo {
             display: flex;
             align-items: center;
@@ -80,24 +178,24 @@
             text-decoration: none;
             color: var(--text);
         }
-
+        
         .red-dot {
             color: var(--accent);
-            animation: pulse 2s infinite;
+            animation: pulse 5s infinite;
         }
-
+        
         @keyframes pulse {
             0% { opacity: 1; }
             50% { opacity: 0.4; }
             100% { opacity: 1; }
         }
-
+        
         nav ul {
             display: flex;
             list-style: none;
             gap: 2rem;
         }
-
+        
         nav a {
             color: var(--text);
             text-decoration: none;
@@ -106,11 +204,11 @@
             position: relative;
             padding: 0.5rem 0;
         }
-
+        
         nav a:hover {
             color: var(--accent);
         }
-
+        
         nav a::after {
             content: '';
             position: absolute;
@@ -121,11 +219,11 @@
             background: var(--accent);
             transition: width 0.3s;
         }
-
+        
         nav a:hover::after {
             width: 100%;
         }
-
+        
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -134,8 +232,8 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-
-        /* Hero Section */
+        
+        /* ===== Hero Section ===== */
         .hero {
             height: 100vh;
             display: flex;
@@ -143,62 +241,42 @@
             justify-content: center;
             padding-top: 4rem;
         }
-
+        
         .hero-content {
             max-width: 800px;
             padding: 0 1rem;
         }
-
+        
         .hero h1 {
             font-size: clamp(2.5rem, 8vw, 4.5rem);
             margin-bottom: 1.5rem;
             line-height: 1.1;
         }
-
+        
         .hero p {
             font-size: clamp(1rem, 3vw, 1.25rem);
             max-width: 600px;
             margin: 0 auto 2.5rem;
             color: var(--text-secondary);
         }
-
-        .cta-button {
-            display: inline-block;
-            background: var(--text);
-            color: var(--primary);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 2px solid var(--text);
-            font-size: 1rem;
-        }
-
-        .cta-button:hover {
-            background: transparent;
-            color: var(--text);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.759);
-        }
-
-        /* Games Section */
+        
+        /* ===== Section Styles ===== */
         section {
             padding: 6rem 0;
         }
-
+        
         .section-title {
             text-align: center;
             margin-bottom: 3.5rem;
         }
-
+        
         .section-title h2 {
             font-size: clamp(1.75rem, 5vw, 2.5rem);
             margin-bottom: 1rem;
             position: relative;
             display: inline-block;
         }
-
+        
         .section-title h2::after {
             content: '';
             position: absolute;
@@ -209,137 +287,39 @@
             height: 3px;
             background: var(--accent);
         }
-
+        
+        /* ===== Games Section ===== */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            gap: 2.5rem;
             justify-items: center;
         }
-
-        .game-card {
-            background: var(--secondary);
-            border-radius: 1rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid var(--accent);
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            max-width: 320px;
-            width: 100%;
-        }
-
-        .game-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(255, 0, 0, 0.15);
-            border-color: var(--accent);
-        }
-
-        .game-image {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .game-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .game-card:hover .game-image img {
-            transform: scale(1.05);
-        }
-
-        .game-content {
-            padding: 1.5rem;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .game-content h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .game-content p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            flex-grow: 1;
-        }
-
-        .game-link {
-            display: inline-block;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            transition: gap 0.3s;
-        }
-
-        .game-link:hover {
-            gap: 0.7rem;
-        }
-
-        .coming-soon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            color: var(--text-secondary);
-            font-style: italic;
-        }
-
-        /* Rewards Section */
-        #rewards {
-            position: relative;
-            overflow: hidden;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        #rewards::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
+        
+        /* ===== Rewards Section ===== */
         .rewards-content {
             max-width: 1000px;
             margin: 0 auto;
             text-align: center;
         }
-
+        
         .rewards-header {
             margin-bottom: 3rem;
         }
-
+        
         .rewards-header h2 {
             font-size: clamp(2rem, 6vw, 3rem);
             margin-bottom: 1.5rem;
-            -webkit-background-clip: text;
-            background-clip: text;
             display: inline-block;
         }
-
+        
         .rewards-header p {
             font-size: 1.25rem;
             color: var(--text-secondary);
             max-width: 800px;
             margin: 0 auto;
         }
-
+        
         .rewards-steps {
             display: flex;
             flex-wrap: wrap;
@@ -347,10 +327,8 @@
             gap: 2rem;
             margin-top: 3rem;
         }
-
+        
         .step-card {
-            background: var(--primary);
-            border-radius: 1rem;
             padding: 2.5rem 2rem;
             flex: 1;
             min-width: 280px;
@@ -358,18 +336,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
-
+        
         .step-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--box-shadow);
             border-color: var(--accent);
         }
-
+        
         .step-card::after {
             content: '';
             position: absolute;
@@ -377,140 +355,136 @@
             left: 0;
             width: 100%;
             height: 4px;
+            background: var(--accent);
             opacity: 0.8;
             transition: height 0.3s ease;
         }
-
+        
         .step-card:hover::after {
             height: 8px;
         }
-
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 2rem;
-            color: var(--accent);
-            transition: all 0.3s ease;
+        
+        .step-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            position: relative;
+            padding-bottom: 0.5rem;
         }
-
-        .step-card:hover .step-icon {
-            background: rgba(255, 0, 0, 0.1);
-            transform: scale(1.1);
+        
+        .step-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: var(--accent);
         }
-
+        
         .step-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             color: var(--text);
         }
-
+        
         .step-card p {
             color: var(--text-secondary);
             font-size: 1rem;
             line-height: 1.6;
         }
-
+        
         .crypto-tokens {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             margin-top: 2rem;
             padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 1rem;
             max-width: 600px;
             margin: 3rem auto 0;
+            flex-wrap: wrap;
         }
-
+        
         .token {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
         }
-
-        .token-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text);
-        }
-
-
+        
         .token-name {
             font-weight: 600;
             font-size: 1.1rem;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50px;
+            transition: all 0.3s ease;
         }
-
-        /* Contact Section */
+        
+        .token-name:hover {
+            color: #000;
+        }
+        
+        /* ===== Contact Section ===== */
         .contact-content {
             max-width: 600px;
             margin: 0 auto;
             text-align: center;
         }
-
+        
         .contact-content p {
             color: var(--text-secondary);
             margin-bottom: 2rem;
             font-size: 1.1rem;
             line-height: 1.7;
         }
-
+        
         .contact-email {
             display: inline-block;
             background: rgba(255, 255, 255, 0.05);
             padding: 1.5rem 2rem;
-            border-radius: 1rem;
+            border-radius: var(--border-radius);
             font-size: 1.25rem;
             font-weight: 600;
             color: var(--text);
             text-decoration: none;
-            transition: all 0.3s;
+            transition: var(--transition);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+        
         .contact-email:hover {
-            background: rgba(255, 0, 0, 0.753);
-            border-color: rgba(255, 0, 0, 0.2);
+            background: rgba(230, 0, 0, 0.75);
+            border-color: rgba(230, 0, 0, 0.2);
             transform: translateY(-3px);
         }
-
+        
         .contact-email i {
             margin-right: 0.5rem;
             color: var(--accent);
         }
-
-        /* Footer */
+        
+        /* ===== Footer ===== */
         footer {
             background: rgba(0, 0, 0, 0.4);
             padding: 3rem 0 2rem;
             margin-top: auto;
         }
-
+        
         .footer-content {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
         }
-
+        
         .social-links {
             display: flex;
             justify-content: center;
             gap: 1.5rem;
             margin-bottom: 2rem;
         }
-
+        
         .social-links a {
             display: flex;
             align-items: center;
@@ -521,14 +495,14 @@
             background: rgba(255, 255, 255, 0.05);
             color: var(--text);
             font-size: 1.25rem;
-            transition: all 0.3s;
+            transition: var(--transition);
         }
-
+        
         .social-links a:hover {
             background: var(--accent);
             transform: translateY(-3px);
         }
-
+        
         .copyright {
             color: var(--text-secondary);
             font-size: 0.9rem;
@@ -538,15 +512,12 @@
             margin: 0 auto;
             text-align: center;
         }
-
-        /* Ad Container */
+        
+        /* ===== Ad Container ===== */
         .ad-container {
-            background: rgba(20, 20, 20, 0.6);
-            border-radius: 8px;
             padding: 1.5rem;
             margin: 2rem auto;
             text-align: center;
-            border: 1px solid rgba(255, 0, 0, 0.797);
             max-width: 500px;
             width: 100%;
             display: flex;
@@ -554,7 +525,7 @@
             align-items: center;
             justify-content: center;
         }
-
+        
         .ad-label {
             display: block;
             color: var(--text-secondary);
@@ -563,69 +534,80 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
-        /* Responsive Design */
+        
+        /* ===== Unified Content Blocks ===== */
+        .content-block {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* ===== Responsive Design ===== */
         @media (max-width: 768px) {
             .header-container {
                 padding: 0 1rem;
             }
-
+            
             nav ul {
                 display: none;
                 position: absolute;
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background: rgba(10, 10, 10, 0.95);
+                background: rgba(0, 0, 0, 0.95);
                 flex-direction: column;
                 align-items: center;
                 padding: 1rem 0;
                 gap: 1.5rem;
             }
-
+            
             nav ul.active {
                 display: flex;
             }
-
+            
             .mobile-menu-btn {
                 display: block;
             }
-
+            
             .hero {
                 padding-top: 2rem;
             }
-
+            
             section {
                 padding: 4rem 0;
             }
-
+            
             .games-grid {
                 grid-template-columns: 1fr;
                 max-width: 500px;
                 margin: 0 auto;
             }
-
+            
             .rewards-steps {
                 flex-direction: column;
                 align-items: center;
             }
-
+            
             .step-card {
                 min-width: 100%;
             }
+            
+            .content-block {
+                padding: 1.5rem;
+            }
         }
-
+        
         @media (max-width: 480px) {
             .hero h1 {
                 font-size: 2.2rem;
             }
-
-            .cta-button {
+            
+            .btn {
                 width: 100%;
-                text-align: center;
                 padding: 1rem;
             }
-
+            
             .contact-email {
                 width: 100%;
                 padding: 1rem;
@@ -641,7 +623,6 @@
                 <span>NEST</span>
                 <span class="red-dot">•</span>
             </a>
-            
             <nav>
                 <button class="mobile-menu-btn" id="mobileMenuBtn">
                     <i class="fas fa-bars"></i>
@@ -655,18 +636,17 @@
             </nav>
         </div>
     </header>
-
+    
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content centered-content">
-                <h1>Creating Immersive <span class="red-dot">Gaming Experiences</span>
-                <span>NEST<span class="red-dot">•</span></h1>
-                <p>Is a passionate game development studio crafting unique and engaging games for players worldwide.</p>
-                <a href="#games" class="cta-button">Explore Our Games</a>
+                <h1>Creating Immersive <span class="red-dot">Gaming Experiences</span><br>with <span>NEST<span class="red-dot">•</span></span></h1>
+                <p>We're a passionate game development studio crafting unique and engaging games for players worldwide.</p>
+                <a href="#games" class="btn btn-primary">Explore Our Games</a>
             </div>
         </div>
     </section>
-
+    
     <section id="games">
         <div class="container">
             <div class="section-title centered-content">
@@ -674,84 +654,105 @@
                 <p>Discover the games we've crafted with passion and precision</p>
             </div>
             
-            <div class="games-grid">
-                <div class="game-card">
-                    <div class="game-image">
-                        <img src="https://images.unsplash.com/photo-1635863138275-d9b33299680a?q=80&w=600" alt="Sudoku Game">
+            <div class="content-block">
+                <div class="games-grid">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1635863138275-d9b33299680a?q=80&w=600" alt="Sudoku Game" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3>Sudoku: Solve & Enjoy!</h3>
+                            <p>Challenge your mind with this classic puzzle game featuring thousands of unique puzzles across multiple difficulty levels.</p>
+                            <a href="https://www.rustore.ru/catalog/app/com.NEST.SUDOKU" class="btn-link" target="_blank" rel="noopener">
+                                Play Now <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="game-content">
-                        <h1>Sudoku: Solve & Enjoy!</h1>
-                        <p>Challenge your mind with this classic puzzle game featuring thousands of unique puzzles across multiple difficulty levels.</p>
-                        <a href="https://www.rustore.ru/catalog/app/com.NEST.SUDOKU" class="game-link" target="_blank">
-                            Play Now <i class="fas fa-arrow-right"></i>
-                        </a>
+                    
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600" alt="Mystery Game" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3>Mystery: Hidden Objects</h3>
+                            <p>Embark on an adventure to find hidden objects in beautifully crafted scenes with an intriguing storyline.</p>
+                            <a href="#" class="btn-link">
+                                Coming Soon <i class="fas fa-hourglass-half"></i>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="game-card">
-                    <div class="game-image">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=600" alt="Mystery Game">
-                    </div>
-                    <div class="game-content">
-                        <h1>Mystery: Hidden Objects</h1>
-                        <p>Embark on an adventure to find hidden objects in beautifully crafted scenes with an intriguing storyline.</p>
-                        <a href="#" class="game-link">
-                            Coming Soon <i class="fas fa-hourglass-half"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="game-card">
-                    <div class="game-image">
-                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600" alt="Secret Project">
-                    </div>
-                    <div class="game-content">
-                        <h1>Project: Red Horizon</h1>
-                        <p>Our most ambitious project yet - an immersive RPG experience set in a dystopian future. Currently in development.</p>
-                        <a href="#" class="game-link">
-                            Coming Soon <i class="fas fa-hourglass-half"></i>
-                        </a>
+                    
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600" alt="Secret Project" loading="lazy">
+                        </div>
+                        <div class="card-content">
+                            <h3>Project: Red Horizon</h3>
+                            <p>Our most ambitious project yet - an immersive RPG experience set in a dystopian future. Currently in development.</p>
+                            <a href="#" class="btn-link">
+                                Coming Soon <i class="fas fa-hourglass-half"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <section id="rewards">
         <div class="container">
-            <div class="rewards-content centered-content">
-                <div class="rewards-header">
-                    <h1>Play your favorite games, earn points, and easily redeem them for cryptocurrency</h1>
-                    <p>Earning rewards has never been easier. Simply play your favorite games, accumulate NEST rewards, and choose cryptocurrency. Here's how it works:</p>
-                </div>
-                
-                <div class="rewards-steps">
-                    <div class="step-card">
-                        <h1>Earn Rewards</h1>
-                        <p>Play games and earn NEST points.</p>
+            <div class="section-title centered-content">
+                <h2>Play & <span class="red-dot">Earn</span></h2>
+                <p>Rewards system for dedicated players</p>
+            </div>
+            
+            <div class="content-block">
+                <div class="rewards-content">
+                    <div class="rewards-header">
+                        <h2>Play your favorite games, earn points, and easily redeem them for cryptocurrency</h2>
+                        <p>Earning rewards has never been easier. Simply play your favorite games, accumulate NEST rewards, and choose cryptocurrency.</p>
                     </div>
                     
-                    <div class="step-card">
-                        <h1>Convert</h1>
-                        <p>Accumulate points and convert them to rewards.</p>
+                    <div class="rewards-steps">
+                        <div class="step-card">
+                            <h3 class="step-title">Earn Rewards</h3>
+                            <p>Play games and earn NEST points through achievements and milestones.</p>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h3 class="step-title">Convert</h3>
+                            <p>Accumulate points and convert them to rewards in your dashboard.</p>
+                        </div>
+                        
+                        <div class="step-card">
+                            <h3 class="step-title">Redeem Points</h3>
+                            <p>Exchange your NEST points for popular cryptocurrencies with low fees.</p>
+                        </div>
                     </div>
                     
-                    <div class="step-card">
-                        <h1>Redeem points for BNB or SOL</h1>
-                        <p>Exchange your NEST points for popular cryptocurrencies like BNB or SOL with low fees.</p>
+                    <div class="crypto-tokens">
+                        <div class="token">
+                            <div class="token-name">BNB</div>
+                        </div>
+                        <div class="token">
+                            <div class="token-name">SOL</div>
+                        </div>
+                        <div class="token">
+                            <div class="token-name">NEST</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
+    
     <div class="container">
         <div class="ad-container centered-content">
             <span class="ad-label">Advertisement</span>
             <div id="container-be0d53ec84a3e3d5f6568b0e0a96544b"></div>
         </div>
     </div>
-
+    
     <section id="contact">
         <div class="container">
             <div class="section-title centered-content">
@@ -759,25 +760,26 @@
                 <p>We'd love to hear from you</p>
             </div>
             
-            <div class="contact-content centered-content">
-                <p>Have questions, feedback, or partnership opportunities? Reach out to our team and we'll get back to you as soon as possible.</p>
-                <a href="mailto:alnestsrt@gmail.com" class="contact-email">
-                    <i class="fas fa-envelope"></i> alnestsrt@gmail.com
-                </a>
+            <div class="content-block">
+                <div class="contact-content">
+                    <p>Have questions, feedback, or partnership opportunities? Reach out to our team and we'll get back to you as soon as possible.</p>
+                    <a href="mailto:alnestsrt@gmail.com" class="contact-email">
+                        <i class="fas fa-envelope"></i> alnestsrt@gmail.com
+                    </a>
+                </div>
             </div>
         </div>
     </section>
-
+    
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="social-links">
                     <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
                     <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
-                
                 <div class="copyright">
                     <p>© 2025 NEST • Game Development Studio. All rights reserved.</p>
                     <p>Crafting unforgettable gaming experiences since 2023</p>
@@ -785,14 +787,12 @@
             </div>
         </div>
     </footer>
-
+    
     <script async="async" data-cfasync="false" src="//pl26951238.profitableratecpm.com/be0d53ec84a3e3d5f6568b0e0a96544b/invoke.js"></script>
-
     <script>
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navMenu = document.getElementById('navMenu');
-        
         mobileMenuBtn.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
@@ -813,7 +813,6 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     window.scrollTo({
@@ -834,7 +833,7 @@
             });
         });
         
-        document.querySelectorAll('section, .game-card, .ad-container, .step-card').forEach((element) => {
+        document.querySelectorAll('section, .card, .ad-container, .step-card, .content-block').forEach((element) => {
             element.style.opacity = 0;
             element.style.transform = 'translateY(30px)';
             element.style.transition = 'all 0.6s ease-out';
@@ -850,12 +849,6 @@
             hero.style.opacity = 1;
             hero.style.transform = 'scale(1)';
         }, 300);
-        
-        // Reward steps animation
-        const stepCards = document.querySelectorAll('.step-card');
-        stepCards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.1}s`;
-        });
     </script>
 </body>
 </html>
