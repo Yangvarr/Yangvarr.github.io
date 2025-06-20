@@ -45,9 +45,9 @@
             max-width: 2580px;
             margin: 0 auto;
             padding: 0 clamp(1rem, 3vw, 2rem);
-            display: flex; /* Добавлено */
-            flex-direction: column; /* Добавлено */
-            align-items: center; /* Добавлено */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         
         .centered-content {
@@ -71,6 +71,7 @@
             border-radius: var(--border-radius);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             flex: 1 1 300px;
+            position: relative;
         }
         
         .card:hover {
@@ -84,6 +85,18 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            position: relative;
+        }
+        
+        .card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+            z-index: 1;
         }
         
         .card-image img {
@@ -94,7 +107,7 @@
         }
         
         .card:hover .card-image img {
-            transform: scale(1.2);
+            transform: scale(1.1);
         }
         
         .card-content {
@@ -102,6 +115,8 @@
             flex-grow: 1;
             display: flex;
             flex-direction: column;
+            position: relative;
+            z-index: 2;
         }
         
         /* Button Styles */
@@ -115,6 +130,7 @@
             text-align: center;
             font-size: clamp(0.9rem, 2vw, 1rem);
             cursor: pointer;
+            border: none;
         }
         
         .btn-primary {
@@ -158,11 +174,16 @@
             padding: clamp(0.8rem, 2vw, 1rem) 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-        
         .header-container {
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* This will position the logo and nav on opposite ends */
             align-items: center;
+            padding: 0 clamp(1rem, 3vw, 2rem);
+        }
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: clamp(1rem, 3vw, 2rem);
         }
         
         .logo {
@@ -186,11 +207,11 @@
             100% { opacity: 1; }
         }
         
-        nav ul {
+        /* nav ul {
             display: flex;
             list-style: none;
             gap: clamp(1rem, 3vw, 2rem);
-        }
+        } */
         
         nav a {
             color: var(--text);
@@ -238,7 +259,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-/*             padding-top: clamp(4rem, 8vw, 6rem); */
             position: relative;
             overflow: hidden;
         }
@@ -548,6 +568,10 @@
                 gap: 1.5rem;
                 padding: 0.5rem 0 1.5rem;
             }
+            
+            .step-card, .card {
+                min-width: 100%;
+            }
         }
         
         @media (max-width: 480px) {
@@ -568,29 +592,21 @@
             .mobile-menu-btn {
                 font-size: 1.8rem;
             }
-            
-            .card, .step-card {
-                min-width: 100%;
-            }
         }
     </style>
 </head>
 <body>
     <header>
         <div class="container header-container">
-<!--             <a href="#" class="logo">
+            <a href="#" class="logo">
                 <span>NEST</span>
                 <span class="red-dot">•</span>
-            </a> -->
+            </a>
             <nav>
                 <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
                 <ul id="navMenu">
-                    <li><a href="#" class="logo">
-                        <span>NEST</span>
-                        <span class="red-dot">•</span>
-                    </a></li>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#rewards">Rewards</a></li>
                     <li><a href="#games">Games</a></li>
@@ -651,6 +667,9 @@
             <div class="games-container">
                 <div class="games-grid">
                     <div class="card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&w=300" alt="Sudoku Game">
+                        </div>
                         <div class="card-content">
                             <h3>Sudoku: Solve & Enjoy!</h3>
                             <a href="https://www.rustore.ru/catalog/app/com.NEST.SUDOKU" class="btn-link" target="_blank" rel="noopener">
@@ -660,6 +679,9 @@
                     </div>
                     
                     <div class="card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&w=300" alt="Hidden Objects Game">
+                        </div>
                         <div class="card-content">
                             <h3>Mystery: Hidden Objects</h3>
                             <a href="#" class="btn-link">
@@ -669,6 +691,9 @@
                     </div>
                     
                     <div class="card">
+                        <div class="card-image">
+                            <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=200&w=300" alt="Red Horizon Game">
+                        </div>
                         <div class="card-content">
                             <h3>Project: Red Horizon</h3>
                             <a href="#" class="btn-link">
@@ -700,10 +725,10 @@
         <div class="container">
             <div class="footer-content">
                 <div class="social-links">
-                    <a href="#" aria-label="X"><i class="fab fa-x"></i></a>
-                    <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
-                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://twitter.com/" aria-label="X"><i class="fab fa-x"></i></a>
+                    <a href="https://discord.com/" aria-label="Discord"><i class="fab fa-discord"></i></a>
+                    <a href="https://instagram.com/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
                 <div class="copyright">
                     <p>© 2025 NEST • Game Development Studio. All rights reserved.</p>
